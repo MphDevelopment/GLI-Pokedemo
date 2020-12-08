@@ -1,0 +1,25 @@
+Select an id
+<input id="a" [(ngModel)]="id">
+<br>
+Selected id
+<input id="a" readonly value={{id}}>
+
+<br>
+Query to filter the list: 
+<input [(ngModel)]="query">
+<br>
+Select a pokemon
+<select name="pokemon" [(ngModel)]="id">
+    <option *ngFor="let p of pokemons | filterPokemonPipe:'name':query" [ngValue]="p.id">
+    {{p.name}}
+</option>
+</select>
+
+<li>
+    <ul *ngFor="let p of pokemons | filterPokemonPipe:'name':query">{{p['name']}}</ul>
+</li>
+
+<button (click)="onClick()">GO!</button>
+<br>
+
+<app-pokedetail *ngIf="pokeDetails" [details]="pokeDetails"></app-pokedetail>
